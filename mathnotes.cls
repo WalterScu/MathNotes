@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mathnotes}[2018/06/07]
 
-\LoadClass[a4paper]{amsart}
+\LoadClass[a4paper]{article}
 \RequirePackage{
 %,amsmath
 ,amsthm
@@ -23,8 +23,37 @@
 }
 
 \RequirePackage[utf8]{inputenc}
-\RequirePackage{times,euler,tikz-cd}
-
+\RequirePackage{times,euler,tikz-cd,luatexja-fontspec,fontspec}
+\setmainjfont{FandolSong}
+\setsansjfont{FandolKai}
+\newcommand{\kcmc}[1]{\settowidth{\labelwidth}{#1}
+	\underline{\,\hspace{2.6cm}\hspace{-0.5\labelwidth}\mbox{\textbf{#1}}\hspace{2.6cm}\hspace{-0.5\labelwidth}}
+}
+\newcommand{\kcdm}[1]{\settowidth{\labelwidth}{#1}
+	\underline{\,\hspace{1.5cm}\hspace{-0.5\labelwidth}\mbox{\textbf{#1}}\hspace{1.5cm}\hspace{-0.5\labelwidth}}
+}
+\newcommand{\ksxs}[1]{\settowidth{\labelwidth}{#1}
+	\underline{\,\hspace{1.7cm}\hspace{-0.5\labelwidth}\mbox{\textbf{#1}}\hspace{1.7cm}\hspace{-0.5\labelwidth}}
+}
+\newcommand*{\testyear}[2]{\gdef\@testyear{#1～#2}}
+%\newcommand*{\rtestyear}[1]{\gdef\@rtestyear{#1}}
+\renewcommand{\maketitle}{\begin{titlepage}%
+		\begin{center}
+			{\LARGE
+				复旦大学数学科学学院\par
+				{\@testyear}学年第二学期研究生期末考试\vspace{2mm}\par% $\Box$  \textbf{A 卷} %\hspace{1cm}$\Box$ \textbf{B 卷}
+			}
+		\end{center}
+		\noindent\large
+		\textbf{课程名称}：\kcmc{英语研究论文写作}\hspace{2mm}\textbf{课程代码}：\kcdm{MAST611111.10}\\
+		\textbf{开课院系}：\kcmc{外文学院}\hspace{2mm}\textbf{考试形式}：\ksxs{课程论文}\\
+		\textbf{姓\ \ 名}：\kcdm{\@author}\hspace{2mm}
+		\textbf{学\ \ 号}：\kcdm{17210180015}\hspace{2mm}
+		\textbf{专\ \ 业}：\kcdm{基础数学}
+		\begin{center}
+			{\LARGE \@title \par}%
+		\end{center}
+\end{titlepage}}
 %New math commands
 \renewcommand{\hom}{\text{Hom}}
 \newcommand{\spec}{\text{Spec }}
